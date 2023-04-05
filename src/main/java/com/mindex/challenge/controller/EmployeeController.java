@@ -1,6 +1,7 @@
 package com.mindex.challenge.controller;
 
 import com.mindex.challenge.data.Employee;
+import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,17 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    // Task 1. Reporting Strucuture - GET HTTP method chosen because not creating, simply reading data
+    // path naming convention chosen because we are still fetching about a specific employee,
+    // the noun of what we are retrieving is at the end
+    @GetMapping("/employee/{id}/reporting-structure")
+    public ReportingStructure readReportingStructure(@PathVariable String id) {
+        LOG.debug("Received read employee reporting structure request for [{}]", id);
+
+
+        return employeeService.readReportingStructure(id);
+    }
 
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
